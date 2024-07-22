@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>In web design, what does CSS stand for?</h2>
+        <form id="quizForm">
+            <label class="option-label">
+                <input type="radio" name="answer" value="A">
+                <span class="option">A. Counter Strike: Source</span>
+            </label><br>
+            <label class="option-label">
+                <input type="radio" name="answer" value="B">
+                <span class="option">B. Corrective Style Sheet</span>
+            </label><br>
+            <label class="option-label">
+                <input type="radio" name="answer" value="C">
+                <span class="option">C. Computer Style Sheet</span>
+            </label><br>
+            <label class="option-label">
+                <input type="radio" name="answer" value="D">
+                <span class="option">D. Cascading Style Sheet</span>
+            </label><br>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.quiz-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.option-label input {
+    display: none;
+}
+
+.option {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.correct {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.incorrect {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+#error {
+    color: red;
+    margin-top: 10px;
+}
+
+    </style>
+
+    <script>
+    document.querySelectorAll('input[name="answer"]').forEach((input) => {
+    input.addEventListener('change', checkAnswer);
+});
+
+function checkAnswer() {
+    const selectedOption = document.querySelector('input[name="answer"]:checked');
+    const options = document.querySelectorAll('.option');
+
+    // Clear previous result
+    options.forEach(option => {
+        option.classList.remove('correct', 'incorrect');
+    });
+
+    if (selectedOption) {
+        const answer = selectedOption.value;
+        const optionLabel = selectedOption.nextElementSibling;
+
+        if (answer === 'D') {
+            optionLabel.classList.add('correct');
+        } else {
+            optionLabel.classList.add('incorrect');
+        }
+    }
+}
+
+    </script>
+
+</body>
+</html>
